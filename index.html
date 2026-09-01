@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sinar Minang — Rumah Makan Padang, Tanjung Duren</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-dark:#231610;
+    --bg-darker:#170e09;
+    --panel:#2c1c14;
+    --gold:#c99a45;
+    --gold-soft:#e2c184;
+    --red:#9c2c22;
+    --red-bright:#b7382a;
+    --cream:#f1e7d4;
+    --cream-dim:#d9c9ab;
+    --green:#57703c;
+    --line: rgba(230,205,160,0.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--bg-darker);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  @media(max-width:640px){.wrap{padding:0 20px;}}
+
+  /* ---------- Gonjong roof motif ---------- */
+  .gonjong-divider{width:100%;display:block;height:34px;}
+  .gonjong-divider path{fill:none;stroke:var(--gold);stroke-width:2;}
+
+  /* ---------- Nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--bg-dark);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1080px;margin:0 auto;padding:16px 28px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .wordmark{
+    font-family:'Fraunces', serif;
+    color:var(--cream);
+    font-size:1.25rem;
+    font-weight:600;
+    display:flex;align-items:center;gap:10px;
+  }
+  .wordmark svg{width:26px;height:26px;flex-shrink:0;}
+  .nav-links{display:flex;gap:32px;align-items:center;}
+  .nav-links a{
+    color:var(--cream-dim);
+    font-size:0.94rem;
+  }
+  .nav-links a:hover{color:var(--gold-soft);}
+  .nav-cta{
+    background:var(--red);
+    color:var(--cream) !important;
+    padding:9px 18px;
+    border-radius:2px;
+    font-size:0.9rem;
+    font-weight:500;
+  }
+  .nav-cta:hover{background:var(--red-bright);}
+  .nav-toggle{display:none;background:none;border:none;color:var(--cream);font-size:1.6rem;cursor:pointer;}
+  @media(max-width:760px){
+    .nav-links{
+      display:none;position:absolute;top:100%;left:0;right:0;
+      background:var(--bg-dark);flex-direction:column;gap:0;
+      border-bottom:1px solid var(--line);
+    }
+    .nav-links.open{display:flex;}
+    .nav-links a{padding:16px 28px;border-top:1px solid var(--line);width:100%;}
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:var(--bg-dark);
+    color:var(--cream);
+    position:relative;
+    overflow:hidden;
+    padding:88px 0 0;
+  }
+  .hero-inner{
+    max-width:1080px;margin:0 auto;padding:0 28px 64px;
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;
+  }
+  @media(max-width:860px){
+    .hero-inner{grid-template-columns:1fr;gap:40px;padding-bottom:48px;}
+  }
+  .badge-row{
+    display:flex;align-items:center;gap:12px;margin-bottom:26px;
+    color:var(--cream-dim);font-size:0.92rem;
+  }
+  .badge-row .stars{color:var(--gold-soft);letter-spacing:1px;}
+  .hero h1{
+    font-size:clamp(2.5rem, 5.2vw, 3.6rem);
+    line-height:1.06;
+    color:var(--cream);
+    margin-bottom:22px;
+  }
+  .hero h1 em{font-style:italic;color:var(--gold-soft);font-weight:500;}
+  .hero p.lede{
+    color:var(--cream-dim);
+    font-size:1.08rem;
+    max-width:46ch;
+    margin-bottom:34px;
+  }
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:13px 26px;font-size:0.95rem;font-weight:500;
+    border-radius:2px;border:1px solid transparent;
+  }
+  .btn-primary{background:var(--red);color:var(--cream);}
+  .btn-primary:hover{background:var(--red-bright);}
+  .btn-outline{border-color:var(--line);color:var(--cream);}
+  .btn-outline:hover{border-color:var(--gold);color:var(--gold-soft);}
+
+  .hero-art{position:relative;}
+  .hero-art svg{width:100%;height:auto;}
+
+  /* ---------- Section headers ---------- */
+  .section{padding:76px 0;}
+  .section-dark{background:var(--bg-dark);color:var(--cream);}
+  .kicker{
+    color:var(--red);
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.05rem;
+    margin-bottom:10px;
+  }
+  .section-dark .kicker{color:var(--gold-soft);}
+  .section h2{
+    font-size:clamp(1.8rem,3.4vw,2.5rem);
+    max-width:20ch;
+    margin-bottom:18px;
+  }
+  .section > .wrap > p.intro{
+    max-width:58ch;color:#4a3a2c;font-size:1.02rem;
+  }
+  .section-dark > .wrap > p.intro{color:var(--cream-dim);}
+
+  /* ---------- Story ---------- */
+  .story-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:44px;
+  }
+  @media(max-width:760px){.story-grid{grid-template-columns:1fr;gap:32px;}}
+  .story-grid p{margin-bottom:16px;color:#4a3a2c;}
+  .fact-list{list-style:none;border-top:1px solid rgba(0,0,0,0.12);}
+  .fact-list li{
+    padding:16px 0;border-bottom:1px solid rgba(0,0,0,0.12);
+    display:flex;justify-content:space-between;gap:20px;
+  }
+  .fact-list .k{color:#7a6650;font-size:0.92rem;}
+  .fact-list .v{font-family:'Fraunces',serif;font-weight:600;text-align:right;}
+
+  /* ---------- Menu ---------- */
+  .menu-orn{
+    text-align:center;color:var(--gold);font-size:1rem;letter-spacing:0.4em;
+    margin:26px 0 6px;opacity:0.8;
+  }
+  .menu-tabs{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:26px;
+    margin:18px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--line);
+  }
+  .menu-tabs a{
+    font-family:'Fraunces',serif;font-size:0.98rem;color:var(--cream-dim);
+    padding-bottom:3px;border-bottom:1px solid transparent;
+  }
+  .menu-tabs a:hover{color:var(--gold-soft);border-color:var(--gold);}
+
+  .menu-groups{margin-top:8px;}
+  .menu-group{margin:48px 0;scroll-margin-top:90px;}
+  .menu-group h3{
+    font-size:1.3rem;color:var(--gold-soft);text-align:center;margin-bottom:4px;
+  }
+  .menu-group .group-note{
+    color:var(--cream-dim);font-size:0.86rem;text-align:center;
+    font-style:italic;margin-bottom:6px;
+  }
+  .menu-group .leaf-rule{
+    display:block;width:56px;height:2px;margin:14px auto 20px;
+    background:var(--green);opacity:0.55;border-radius:2px;
+  }
+
+  .menu-list{column-count:2;column-gap:48px;}
+  .menu-row{
+    display:flex;align-items:baseline;gap:6px;
+    padding:8px 0;break-inside:avoid;
+  }
+  .menu-row .dish{
+    font-family:'Fraunces',serif;font-size:0.98rem;color:var(--cream);
+  }
+  .menu-row.is-favorit .dish::before{
+    content:"●";color:var(--red-bright);font-size:0.5rem;
+    margin-right:7px;vertical-align:middle;
+  }
+  .menu-row .leader{
+    flex:1 1 auto;min-width:16px;margin:0 2px 5px;
+    border-bottom:1px dotted rgba(230,205,160,0.32);
+  }
+  .menu-row .price{
+    font-family:'Fraunces',serif;font-weight:600;font-size:0.95rem;
+    color:var(--gold-soft);white-space:nowrap;
+  }
+
+  .price-note{
+    margin-top:34px;color:var(--cream-dim);font-size:0.88rem;font-style:italic;
+    text-align:center;border-top:1px solid var(--line);padding-top:20px;
+  }
+  @media(max-width:640px){
+    .menu-list{column-count:1;}
+  }
+
+  /* ---------- Visit info ---------- */
+  .visit-grid{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;margin-top:44px;
+  }
+  @media(max-width:820px){.visit-grid{grid-template-columns:1fr;gap:40px;}}
+  .info-row{
+    display:flex;gap:16px;padding:18px 0;border-top:1px solid rgba(0,0,0,0.12);
+  }
+  .info-row:last-child{border-bottom:1px solid rgba(0,0,0,0.12);}
+  .info-row .icon{width:22px;height:22px;flex-shrink:0;color:var(--red);margin-top:2px;}
+  .info-row h4{font-family:'Work Sans';font-size:0.98rem;font-weight:600;margin-bottom:3px;}
+  .info-row p{color:#4a3a2c;font-size:0.94rem;}
+  .status-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(87,112,60,0.12);color:var(--green);
+    padding:7px 14px;border-radius:2px;font-size:0.88rem;font-weight:500;
+    margin-bottom:20px;
+  }
+  .status-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--green);}
+  .map-card{
+    background:var(--panel);color:var(--cream);
+    padding:30px;border-radius:2px;
+  }
+  .map-card h4{font-family:'Fraunces';font-size:1.15rem;margin-bottom:10px;color:var(--gold-soft);}
+  .map-card address{font-style:normal;color:var(--cream-dim);font-size:0.94rem;margin-bottom:20px;line-height:1.7;}
+  .map-card .btn{width:100%;text-align:center;}
+
+  /* ---------- Reviews ---------- */
+  .review-strip{
+    display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    background:rgba(0,0,0,0.12);
+    margin-top:44px;
+  }
+  @media(max-width:760px){.review-strip{grid-template-columns:1fr;}}
+  .review-card{background:var(--cream);padding:32px;}
+  .review-card .stars{color:var(--red);letter-spacing:1px;margin-bottom:14px;font-size:0.95rem;}
+  .review-card p{color:#3d2f22;font-size:1rem;margin-bottom:14px;}
+  .review-card .who{color:#7a6650;font-size:0.86rem;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--bg-darker);color:var(--cream-dim);padding:56px 0 28px;}
+  .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr;gap:32px;}}
+  .footer-grid .wordmark{color:var(--cream);margin-bottom:12px;}
+  .footer-grid p{font-size:0.9rem;max-width:34ch;}
+  .footer-col h5{font-family:'Fraunces';color:var(--gold-soft);font-size:0.98rem;margin-bottom:14px;font-weight:500;}
+  .footer-col a, .footer-col p{display:block;font-size:0.9rem;margin-bottom:10px;color:var(--cream-dim);}
+  .footer-col a:hover{color:var(--gold-soft);}
+  .footer-bottom{
+    border-top:1px solid rgba(230,205,160,0.12);padding-top:22px;
+    font-size:0.82rem;color:#8a765c;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  }
+
+  ::selection{background:var(--gold);color:var(--bg-darker);}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="wordmark">
+      <svg viewBox="0 0 40 40" fill="none"><path d="M2 30 Q10 10 20 22 Q30 10 38 30" stroke="#c99a45" stroke-width="2.4" stroke-linecap="round"/></svg>
+      Sinar Minang
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Buka menu">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#tentang">Tentang</a>
+      <a href="#menu">Menu</a>
+      <a href="#kunjungi">Kunjungi</a>
+      <a href="#ulasan">Ulasan</a>
+      <a href="https://gofood.co.id/jakarta/restaurant/rumah-makan-sinar-minang-p-masakan-padang-cb52aef2-45f5-4870-a4a6-b733758a605c" class="nav-cta">Pesan Online</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="badge-row">
+          <span class="stars">★★★★★</span>
+          <span>4.5 dari 2.068 ulasan Google</span>
+        </div>
+        <h1>Rendang, gulai, dan sambal yang dimasak <em>sejak subuh</em>, cara Minang asli.</h1>
+        <p class="lede">Sinar Minang menghidangkan masakan rumahan Padang di Tanjung Duren — nasi, lauk, dan gulai disusun berjejer, tinggal tunjuk dan makan sepuasnya.</p>
+        <div class="btn-row">
+          <a href="https://gofood.co.id/jakarta/restaurant/rumah-makan-sinar-minang-p-masakan-padang-cb52aef2-45f5-4870-a4a6-b733758a605c" class="btn btn-primary">Pesan Online</a>
+          <a href="#menu" class="btn btn-outline">Lihat Menu</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <svg viewBox="0 0 420 380" fill="none">
+          <!-- gonjong roofline silhouette -->
+          <path d="M10 220 C 60 130, 90 260, 130 150 C 160 70, 190 240, 210 140 C 230 240, 260 70, 290 150 C 330 260, 360 130, 410 220 L 410 235 L 10 235 Z" fill="#2c1c14" stroke="#c99a45" stroke-width="1.5"/>
+          <rect x="40" y="235" width="340" height="110" fill="#1c120c"/>
+          <line x1="40" y1="235" x2="40" y2="345" stroke="#c99a45" stroke-width="1.5"/>
+          <line x1="380" y1="235" x2="380" y2="345" stroke="#c99a45" stroke-width="1.5"/>
+          <line x1="70" y1="245" x2="70" y2="345" stroke="#4a3226" stroke-width="1"/>
+          <line x1="130" y1="245" x2="130" y2="345" stroke="#4a3226" stroke-width="1"/>
+          <line x1="290" y1="245" x2="290" y2="345" stroke="#4a3226" stroke-width="1"/>
+          <line x1="350" y1="245" x2="350" y2="345" stroke="#4a3226" stroke-width="1"/>
+          <rect x="180" y="270" width="60" height="75" fill="#9c2c22" opacity="0.85"/>
+          <circle cx="210" cy="150" r="4" fill="#e2c184"/>
+          <circle cx="130" cy="160" r="3" fill="#e2c184"/>
+          <circle cx="290" cy="160" r="3" fill="#e2c184"/>
+        </svg>
+      </div>
+    </div>
+    <svg class="gonjong-divider" viewBox="0 0 1080 34" preserveAspectRatio="none">
+      <path d="M0 30 Q40 4 80 30 T160 30 T240 30 T320 30 T400 30 T480 30 T560 30 T640 30 T720 30 T800 30 T880 30 T960 30 T1040 30 T1120 30"/>
+    </svg>
+  </section>
+
+  <!-- STORY -->
+  <section class="section" id="tentang">
+    <div class="wrap">
+      <div class="kicker">Tentang kami</div>
+      <h2>Satu meja, puluhan pilihan lauk — begitulah cara makan orang Padang.</h2>
+      <div class="story-grid">
+        <div>
+          <p>Di Sinar Minang, dapur menyiapkan gulai dan sambal dalam jumlah besar setiap pagi, lalu menatanya di etalase depan meja makan. Anda duduk, piring nasi datang, dan lauk mengikuti — rendang, ayam bakar, dendeng, sayur nangka, sampai kikil, semua tinggal ditunjuk.</p>
+          <p>Bumbu digiling dari cabai, kemiri, dan rempah segar setiap hari, mengikuti resep yang dibawa turun-temurun dari Sumatra Barat. Yang tidak habis, tidak dijual besok.</p>
+        </div>
+        <ul class="fact-list">
+          <li><span class="k">Jenis masakan</span><span class="v">Padang / Minang</span></li>
+          <li><span class="k">Rating Google</span><span class="v">4.5 (2.068 ulasan)</span></li>
+          <li><span class="k">Kisaran harga</span><span class="v">Rp 25.000–50.000/orang</span></li>
+          <li><span class="k">Waktu makan rata-rata</span><span class="v">± 30 menit</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="section section-dark" id="menu">
+    <div class="wrap">
+      <div class="kicker">Menu</div>
+      <h2>Yang paling dicari di etalase kami</h2>
+      <p class="intro">Semua harga sesuai menu GoFood terbaru kami. Nasi dan lauk bisa dicampur sesuka Anda.</p>
+      <span class="menu-orn">✺</span>
+
+      <div class="menu-tabs">
+        <a href="#menu-nasi">Nasi Padang</a>
+        <a href="#menu-lauk">Lauk Pauk</a>
+        <a href="#menu-cemilan">Cemilan</a>
+      </div>
+
+      <div class="menu-groups">
+
+        <div class="menu-group" id="menu-nasi">
+          <h3>Aneka Nasi Padang</h3>
+          <p class="group-note">Nasi + lauk pilihan + sayur kol kacang + sambal</p>
+          <span class="leaf-rule"></span>
+          <div class="menu-list">
+            <div class="menu-row is-favorit"><span class="dish">Nasi Rendang + Perkedel</span><span class="leader"></span><span class="price">38.000</span></div>
+            <div class="menu-row is-favorit"><span class="dish">Nasi Rendang + Dadar</span><span class="leader"></span><span class="price">38.000</span></div>
+            <div class="menu-row is-favorit"><span class="dish">Nasi Ayam + Dadar</span><span class="leader"></span><span class="price">38.000</span></div>
+            <div class="menu-row is-favorit"><span class="dish">Nasi Ayam + Perkedel</span><span class="leader"></span><span class="price">38.000</span></div>
+            <div class="menu-row is-favorit"><span class="dish">Nasi Ayam Bakar</span><span class="leader"></span><span class="price">28.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Ayam Goreng</span><span class="leader"></span><span class="price">28.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Ayam Gulai</span><span class="leader"></span><span class="price">28.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Kembung Bakar</span><span class="leader"></span><span class="price">28.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Cumi</span><span class="leader"></span><span class="price">42.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Limpa</span><span class="leader"></span><span class="price">28.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Ati Sapi</span><span class="leader"></span><span class="price">28.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Perkedel</span><span class="leader"></span><span class="price">17.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Telur Dadar</span><span class="leader"></span><span class="price">17.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Telur Bulat</span><span class="leader"></span><span class="price">17.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Ikan Mas Gulai</span><span class="leader"></span><span class="price">28.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Ikan Mas Goreng</span><span class="leader"></span><span class="price">28.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Ikan Bawal Bakar</span><span class="leader"></span><span class="price">28.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Ikan Tongkol</span><span class="leader"></span><span class="price">28.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Ikan Kakap Daging</span><span class="leader"></span><span class="price">28.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Ikan Mujair Goreng</span><span class="leader"></span><span class="price">28.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Ikan Lele Goreng</span><span class="leader"></span><span class="price">28.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Ikan Kembung Goreng</span><span class="leader"></span><span class="price">28.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Kepala Kakap</span><span class="leader"></span><span class="price">53.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Udang</span><span class="leader"></span><span class="price">36.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Udang Balado</span><span class="leader"></span><span class="price">36.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Belut</span><span class="leader"></span><span class="price">36.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Cincang</span><span class="leader"></span><span class="price">36.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Otak</span><span class="leader"></span><span class="price">33.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Kikil</span><span class="leader"></span><span class="price">33.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Paru</span><span class="leader"></span><span class="price">33.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Usus</span><span class="leader"></span><span class="price">28.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Bok Campur</span><span class="leader"></span><span class="price">33.000</span></div>
+            <div class="menu-row"><span class="dish">Nasi Putih 1 Porsi</span><span class="leader"></span><span class="price">10.000</span></div>
+          </div>
+        </div>
+
+        <div class="menu-group" id="menu-lauk">
+          <h3>Aneka Lauk Pauk</h3>
+          <p class="group-note">Lauk satuan tanpa nasi, cocok untuk tambahan</p>
+          <span class="leaf-rule"></span>
+          <div class="menu-list">
+            <div class="menu-row is-favorit"><span class="dish">Rendang</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row is-favorit"><span class="dish">Telur Bulat</span><span class="leader"></span><span class="price">10.000</span></div>
+            <div class="menu-row is-favorit"><span class="dish">Perkedel</span><span class="leader"></span><span class="price">10.000</span></div>
+            <div class="menu-row"><span class="dish">Ayam Goreng</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row"><span class="dish">Ayam Bakar</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row"><span class="dish">Ayam Gulai</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row"><span class="dish">Ayam Balado</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row"><span class="dish">Ikan Kembung Goreng</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row"><span class="dish">Ikan Lele Goreng</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row"><span class="dish">Ikan Mujair Goreng</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row"><span class="dish">Ikan Tongkol Goreng</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row"><span class="dish">Ikan Bawal Bakar</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row"><span class="dish">Ikan Kembung Bakar</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row"><span class="dish">Ikan Kakap Daging</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row"><span class="dish">Ikan Mas Goreng</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row"><span class="dish">Ikan Mas Gulai</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row"><span class="dish">Kepala Kakap</span><span class="leader"></span><span class="price">46.000</span></div>
+            <div class="menu-row"><span class="dish">Cumi</span><span class="leader"></span><span class="price">36.000</span></div>
+            <div class="menu-row"><span class="dish">Udang</span><span class="leader"></span><span class="price">29.000</span></div>
+            <div class="menu-row"><span class="dish">Cincang</span><span class="leader"></span><span class="price">29.000</span></div>
+            <div class="menu-row"><span class="dish">Paru</span><span class="leader"></span><span class="price">26.000</span></div>
+            <div class="menu-row"><span class="dish">Kikil</span><span class="leader"></span><span class="price">26.000</span></div>
+            <div class="menu-row"><span class="dish">Otak Sapi</span><span class="leader"></span><span class="price">26.000</span></div>
+            <div class="menu-row"><span class="dish">Iso / Usus</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row"><span class="dish">Babat</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row"><span class="dish">Ati Sapi</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row"><span class="dish">Limpa</span><span class="leader"></span><span class="price">21.000</span></div>
+            <div class="menu-row"><span class="dish">Telur Dadar</span><span class="leader"></span><span class="price">10.000</span></div>
+            <div class="menu-row"><span class="dish">Tempe</span><span class="leader"></span><span class="price">5.000</span></div>
+            <div class="menu-row"><span class="dish">Sambal 1 Porsi</span><span class="leader"></span><span class="price">9.000</span></div>
+            <div class="menu-row"><span class="dish">Sayur 1 Porsi</span><span class="leader"></span><span class="price">9.000</span></div>
+          </div>
+        </div>
+
+        <div class="menu-group" id="menu-cemilan">
+          <h3>Aneka Cemilan</h3>
+          <p class="group-note">Pelengkap renyah untuk santap nasi Anda</p>
+          <span class="leaf-rule"></span>
+          <div class="menu-list">
+            <div class="menu-row is-favorit"><span class="dish">Kerupuk Kulit</span><span class="leader"></span><span class="price">8.000</span></div>
+            <div class="menu-row"><span class="dish">Kerupuk Udang</span><span class="leader"></span><span class="price">5.000</span></div>
+            <div class="menu-row"><span class="dish">Krupuk Emping</span><span class="leader"></span><span class="price">8.000</span></div>
+          </div>
+          <p class="price-note">Harga dapat berubah sewaktu-waktu tanpa pemberitahuan dan mengikuti menu GoFood terbaru.</p>
+        </div>
+
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="section" id="kunjungi">
+    <div class="wrap">
+      <div class="kicker">Kunjungi kami</div>
+      <h2>Datang saat lapar, kami selalu siap</h2>
+      <div class="visit-grid">
+        <div>
+          <span class="status-pill"><span class="dot"></span>Buka sekarang · tidak terlalu ramai</span>
+          <div class="info-row">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <div>
+              <h4>Jam operasional</h4>
+              <p>Buka setiap hari, tutup pukul 23.00. Waktu makan rata-rata pengunjung sekitar 30 menit — cocok untuk makan siang cepat maupun makan malam santai.</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
+            <div>
+              <h4>Lokasi</h4>
+              <p>Jl. Daan Mogot No.19F 6, Tanjung Duren Utara, Grogol Petamburan, Jakarta Barat.</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>
+            <div>
+              <h4>Telepon</h4>
+              <p><a href="tel:0215688521">(021) 5688521</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-card">
+          <h4>Antar ke meja Anda</h4>
+          <address>
+            Rumah Makan Sinar Minang<br>
+            Jl. Daan Mogot No.19F 6, RT.8/RW.1<br>
+            Tj. Duren Utara, Grogol Petamburan<br>
+            Jakarta Barat, DKI Jakarta 11470
+          </address>
+          <a href="https://maps.google.com/maps?ftid=0x2e69f644b0a48fff:0x73a9a8a34b5fc6e7" class="btn btn-primary" style="margin-bottom:12px;">Buka di Google Maps</a>
+          <a href="https://gofood.co.id/jakarta/restaurant/rumah-makan-sinar-minang-p-masakan-padang-cb52aef2-45f5-4870-a4a6-b733758a605c" class="btn btn-outline">Pesan lewat GoFood</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section section-dark" id="ulasan">
+    <div class="wrap">
+      <div class="kicker">Kata pelanggan</div>
+      <h2>4.5 dari 2.068 ulasan Google</h2>
+      <div class="review-strip">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>Rumah makan Padang andalan — harganya bersahabat dan rasanya konsisten enak. Selalu tambah nasi kalau makan di sini, terutama ayam bakar dan rendangnya. Bumbunya kuat sekali.</p>
+          <div class="who">Ulasan pengunjung, TripAdvisor</div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>Menu lengkap dan gulai kuahnya masih terasa segar meski sudah siang. Tempat duduk cukup nyaman untuk makan santai bersama keluarga.</p>
+          <div class="who">Ulasan pengunjung, Google Review</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="wordmark">
+          <svg viewBox="0 0 40 40" fill="none"><path d="M2 30 Q10 10 20 22 Q30 10 38 30" stroke="#c99a45" stroke-width="2.4" stroke-linecap="round"/></svg>
+          Sinar Minang
+        </div>
+        <p>Rumah makan Padang di Tanjung Duren, Jakarta Barat. Buka setiap hari sampai pukul 23.00.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Kunjungi</h5>
+        <p>Jl. Daan Mogot No.19F 6<br>Tj. Duren Utara, Jakarta Barat</p>
+        <a href="tel:0215688521">(021) 5688521</a>
+      </div>
+      <div class="footer-col">
+        <h5>Tautan</h5>
+        <a href="#menu">Menu lengkap</a>
+        <a href="https://gofood.co.id/jakarta/restaurant/rumah-makan-sinar-minang-p-masakan-padang-cb52aef2-45f5-4870-a4a6-b733758a605c">Pesan di GoFood</a>
+        <a href="https://maps.google.com/maps?ftid=0x2e69f644b0a48fff:0x73a9a8a34b5fc6e7">Google Maps</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Rumah Makan Sinar Minang</span>
+      <span>Dibuat untuk UMKM Sinar Minang</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', function(){
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    a.addEventListener('click', function(){ document.getElementById('navLinks').classList.remove('open'); });
+  });
+</script>
+
+</body>
+</html>
